@@ -1,0 +1,1 @@
+pm2 start z.js --no-daemon -i 3
