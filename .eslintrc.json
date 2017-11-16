@@ -1,0 +1,34 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "radix": "off",
+    "object-curly-newline": "off",
+    "arrow-body-style": "off",
+    "function-paren-newline": "off",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    "semi": ["error", "never"],
+    "arrow-parens": "off",
+    "no-mixed-operators": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 0
+      }
+    ],
+    "import/extensions": "off",
+    "curly": ["error", "all"],
+    "import/no-unresolved": "off"
+  },
+  "extends": "airbnb-base"
+}
