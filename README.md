@@ -7,8 +7,13 @@ this module let you run small simple task in a loop only with one instace.
 api methods:
 
 ```javascript
-init((redis: ioredisClient))
+init = resid => {}
+run = async (code, func, ...params) => {}
 ```
+
+### yout function must be an async function and it's first argument is the code
+
+simple example:
 
 ```javascript
 const Promise = require('bluebird')
