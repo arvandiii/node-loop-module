@@ -1,1 +1,1 @@
-pm2 start z.js --no-daemon -i 3
+pm2 start example.js --no-daemon -i 3

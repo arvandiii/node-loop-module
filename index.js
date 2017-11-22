@@ -21,7 +21,7 @@ const getRedis = () => {
 }
 
 function unlockErrorHandler(err) {
-  console.error(err)
+  // console.error(err)
 }
 
 const run = async (code, func, ...params) => {
@@ -30,7 +30,6 @@ const run = async (code, func, ...params) => {
     try {
       await using(redlock.disposer(resource, interval, unlockErrorHandler), async lock => {
         let running = true
-        // let locker = lock
         const extendLock = async () => {
           while (running) {
             await lock.extend(interval)
@@ -39,7 +38,7 @@ const run = async (code, func, ...params) => {
         }
         const runFunc = async () => {
           try {
-            await func('\x1b[31m', ...params, '\x1b[0m')
+            await func(code, ...params)
           } finally {
             running = false
           }
@@ -47,10 +46,10 @@ const run = async (code, func, ...params) => {
         await Promise.all([extendLock(), runFunc()])
       })
     } catch (error) {
-      if (error.message === 'alaki') {
-        console.log('inja alaki', process.env.pm_id)
+      if (error.message === 'random error') {
+        // console.log('random error')
       } else {
-        console.log('inja error')
+        console.log('error')
       }
       await Promise.delay(interval)
     }
