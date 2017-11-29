@@ -40,6 +40,7 @@ const run = async (code, func, ...params) => {
           try {
             await func(code, ...params)
           } catch (error) {
+            console.log('loop function error', error)
             throw new Error('func')
           } finally {
             running = false
