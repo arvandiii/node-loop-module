@@ -6,7 +6,7 @@ const Redlock = require('redlock')
 
 let redis = null
 let redlock = null
-const interval = 1 * 1000
+const interval = 50 * 1000
 const driftFactor = 0.01 // time in ms
 const retryCount = 0
 const retryDelay = 200 // time in ms
@@ -49,7 +49,8 @@ const run = async (code, func, ...params) => {
       if (error.message === 'random error') {
         // console.log('random error')
       } else {
-        console.log('error')
+        // console.log(error.message)
+        // throw new Error(error)
       }
       await Promise.delay(interval)
     }
