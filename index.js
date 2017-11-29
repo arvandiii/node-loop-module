@@ -39,6 +39,8 @@ const run = async (code, func, ...params) => {
         const runFunc = async () => {
           try {
             await func(code, ...params)
+          } catch (error) {
+            throw new Error('func')
           } finally {
             running = false
           }
@@ -46,11 +48,8 @@ const run = async (code, func, ...params) => {
         await Promise.all([extendLock(), runFunc()])
       })
     } catch (error) {
-      if (error.message === 'random error') {
-        // console.log('random error')
-      } else {
-        // console.log(error.message)
-        // throw new Error(error)
+      if (error.message === 'func') {
+        console.log('loop func error')
       }
       await Promise.delay(interval)
     }
