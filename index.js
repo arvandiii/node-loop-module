@@ -6,7 +6,7 @@ const Redlock = require('redlock')
 
 let redis = null
 let redlock = null
-const interval = 50 * 1000
+let interval = 50 * 1000
 const driftFactor = 0.01 // time in ms
 const retryCount = 0
 const retryDelay = 200 // time in ms
@@ -57,7 +57,10 @@ const run = async (code, func, ...params) => {
   }
 }
 
-const init = newRedis => {
+const init = (newRedis, opts) => {
+  if (opts && opts.interval) {
+    interval = opts.interval
+  }
   setRedis(newRedis)
   redlock = new Redlock([redis], {
     driftFactor, // time in ms
