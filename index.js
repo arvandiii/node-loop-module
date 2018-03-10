@@ -6,7 +6,7 @@ const Redlock = require('redlock')
 
 let redis = null
 let redlock = null
-const interval = 1000 * 10
+const interval = 1000 * 4
 const driftFactor = 0.01 // time in ms
 const retryCount = 0
 const retryDelay = 200 // time in ms
