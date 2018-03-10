@@ -44,8 +44,8 @@ const f = async (code, key, msg) => {
 
 init(redis)
 
-run('000', f, 'module:loop:testkey1', "I'm running")
-run('001', f, 'module:loop:testkey2', "I'm running with another code")
+run(1000, '000', f, 'module:loop:testkey1', "I'm running")
+run(1000, '001', f, 'module:loop:testkey2', "I'm running with another code")
 ```
 
 run this script with pm2 (using multiple instances)
