@@ -6,6 +6,7 @@ const Redlock = require('redlock')
 
 let redis = null
 let redlock = null
+const interval = 1000 * 10
 const driftFactor = 0.01 // time in ms
 const retryCount = 0
 const retryDelay = 200 // time in ms
@@ -23,7 +24,7 @@ function unlockErrorHandler(err) {
   // console.error(err)
 }
 
-const run = async (interval, code, func, ...params) => {
+const run = async (code, func, ...params) => {
   const resource = `locks:account:${code}`
   while (true) {
     try {
