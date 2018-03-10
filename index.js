@@ -31,8 +31,8 @@ const run = async (interval, code, func, ...params) => {
         let running = true
         const extendLock = async () => {
           while (running) {
-            await lock.extend(interval)
-            await Promise.delay(interval / 2)
+            await lock.extend(interval / 5)
+            await Promise.delay(interval / 10)
           }
         }
         const runFunc = async () => {
