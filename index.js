@@ -6,7 +6,7 @@ const Redlock = require('redlock')
 
 let redis = null
 let redlock = null
-const interval = 1000 * 4
+const interval = 1000 * 10
 const driftFactor = 0.01 // time in ms
 const retryCount = 0
 const retryDelay = 200 // time in ms
@@ -32,8 +32,8 @@ const run = async (code, func, ...params) => {
         let running = true
         const extendLock = async () => {
           while (running) {
-            await lock.extend(interval / 5)
-            await Promise.delay(interval / 10)
+            await lock.extend(interval)
+            await Promise.delay(interval / 2)
           }
         }
         const runFunc = async () => {

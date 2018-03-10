@@ -7,7 +7,7 @@ const redis = new Redis(6379, 'redis')
 const f = async (code, key, msg) => {
   const value0 = await redis.get(key)
   if (Math.random() > 0.8) {
-    throw new Error('random error')
+    // throw new Error('random error')
   }
   await Promise.delay(10000)
   const value1 = await redis.incr(key)
