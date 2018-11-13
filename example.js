@@ -7,7 +7,7 @@ const redis = new Redis(6379, 'redis')
 const f = async (code, key, msg) => {
   const value0 = await redis.get(key)
   if (Math.random() > 0.8) {
-    // throw new Error('random error')
+    throw new Error('random error')
   }
   await Promise.delay(10000)
   const value1 = await redis.incr(key)
@@ -16,5 +16,5 @@ const f = async (code, key, msg) => {
 
 init(redis)
 
-run('000', f, 'module:loop:testkey1', "I'm running")
-run('001', f, 'module:loop:testkey2', "I'm running with another code")
+run('module:loop:testkey1', f, "I'm running")
+run('module:loop:testkey2', f, "I'm running with another code")
